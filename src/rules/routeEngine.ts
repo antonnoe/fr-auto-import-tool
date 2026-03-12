@@ -4,7 +4,21 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
   const blockers: string[] = [];
   const currentStepIds: string[] = [];
 
-  if (!answers.vehicleType || answers.euOrigin === null || answers.above35t === null) {
+  const requiredBooleanFields: Array<keyof Omit<IntakeAnswers, 'vehicleType'>> = [
+    'euOrigin',
+    'above35t',
+    'hasQuitusFiscal',
+    'hasControleTechniqueValid',
+    'hasProofOfAddress',
+    'hasConformityDoc',
+    'nameAddressMatch',
+    'wantsProfessionalHelp'
+  ];
+
+  const hasIncompleteAnswers =
+    !answers.vehicleType || requiredBooleanFields.some((field) => answers[field] === null);
+
+  if (hasIncompleteAnswers) {
     return {
       route: 'X',
       title: 'Route X — Onvolledige intake',

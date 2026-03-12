@@ -43,6 +43,7 @@ Buiten scope:
 
 - Next.js (App Router)
 - TypeScript
+- ESLint via `next lint`
 - Gescheiden structuur:
   - `src/app`
   - `src/components`
@@ -53,6 +54,12 @@ Buiten scope:
 Belangrijk: de beslislogica staat centraal in `src/rules/routeEngine.ts`.
 
 ## Lokaal draaien
+
+Vereisten:
+- Node.js 18.17+ (of 20 LTS)
+- npm 9+
+
+Installeren en starten:
 
 ```bash
 npm install
@@ -67,6 +74,10 @@ Checks:
 npm run lint
 npm run build
 ```
+
+## Bekende omgevingsbeperking in Codex-runner
+
+In sommige afgeschermde omgevingen kan `npm install` falen met `403 Forbidden` door registry/security policy. In dat geval is alleen een statische code-audit mogelijk; op een normale lokale machine met toegang tot `registry.npmjs.org` zouden install/lint/build moeten werken.
 
 ## Beperkingen / volgende stappen
 
