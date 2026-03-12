@@ -2,7 +2,7 @@ import { IntakeAnswers } from '@/lib/types';
 
 export const sampleScenarios: Array<{ name: string; answers: IntakeAnswers }> = [
   {
-    name: 'Scenario 1: Personenauto, alles compleet, zelf indienen',
+    name: 'Personenauto — dossier compleet, zelf online indienen',
     answers: {
       vehicleType: 'personenauto',
       euOrigin: true,
@@ -16,7 +16,21 @@ export const sampleScenarios: Array<{ name: string; answers: IntakeAnswers }> = 
     }
   },
   {
-    name: 'Scenario 2: Camper <=3.5t zonder quitus',
+    name: 'Personenauto — voorbereiding zelf, indiening via professional',
+    answers: {
+      vehicleType: 'personenauto',
+      euOrigin: true,
+      above35t: false,
+      hasQuitusFiscal: true,
+      hasControleTechniqueValid: true,
+      hasProofOfAddress: true,
+      hasConformityDoc: true,
+      nameAddressMatch: true,
+      wantsProfessionalHelp: true
+    }
+  },
+  {
+    name: 'Camper tot en met 3,5 ton — quitus fiscal ontbreekt',
     answers: {
       vehicleType: 'camper_tot_35t',
       euOrigin: true,
@@ -30,13 +44,13 @@ export const sampleScenarios: Array<{ name: string; answers: IntakeAnswers }> = 
     }
   },
   {
-    name: 'Scenario 3: Caravan >500kg zonder geldig CT en zonder COC',
+    name: 'Aanhanger / caravan — conformiteitsdocument ontbreekt',
     answers: {
       vehicleType: 'aanhanger_caravan',
       euOrigin: true,
       above35t: false,
-      hasQuitusFiscal: true,
-      hasControleTechniqueValid: false,
+      hasQuitusFiscal: null,
+      hasControleTechniqueValid: null,
       hasProofOfAddress: true,
       hasConformityDoc: false,
       nameAddressMatch: true,
