@@ -1,22 +1,54 @@
-import { IntakeAnswers, RouteResult } from '@/lib/types';
+import { IntakeAnswers, RouteResult, VehicleType } from '@/lib/types';
+
+type IntakeField = keyof Omit<IntakeAnswers, 'vehicleType'>;
+
+type ScenarioConfig = {
+  requiredBooleanFields: IntakeField[];
+  checkQuitus: boolean;
+  checkControleTechnique: boolean;
+  checkConformity: boolean;
+};
+
+const baseRequiredFields: IntakeField[] = ['euOrigin', 'above35t', 'hasProofOfAddress', 'nameAddressMatch', 'wantsProfessionalHelp'];
+
+const scenarioConfigByVehicleType: Record<VehicleType, ScenarioConfig> = {
+  personenauto: {
+    requiredBooleanFields: [...baseRequiredFields, 'hasQuitusFiscal', 'hasControleTechniqueValid', 'hasConformityDoc'],
+    checkQuitus: true,
+    checkControleTechnique: true,
+    checkConformity: true
+  },
+  camper_tot_35t: {
+    requiredBooleanFields: [...baseRequiredFields, 'hasQuitusFiscal', 'hasControleTechniqueValid', 'hasConformityDoc'],
+    checkQuitus: true,
+    checkControleTechnique: true,
+    checkConformity: true
+  },
+  aanhanger_caravan: {
+    requiredBooleanFields: [...baseRequiredFields, 'hasConformityDoc'],
+    checkQuitus: false,
+    checkControleTechnique: false,
+    checkConformity: true
+  }
+};
 
 export function evaluateRoute(answers: IntakeAnswers): RouteResult {
   const blockers: string[] = [];
   const currentStepIds: string[] = [];
 
-  const requiredBooleanFields: Array<keyof Omit<IntakeAnswers, 'vehicleType'>> = [
-    'euOrigin',
-    'above35t',
-    'hasQuitusFiscal',
-    'hasControleTechniqueValid',
-    'hasProofOfAddress',
-    'hasConformityDoc',
-    'nameAddressMatch',
-    'wantsProfessionalHelp'
-  ];
+  if (!answers.vehicleType) {
+    return {
+      route: 'X',
+      title: 'Route X — Onvolledige intake',
+      reason: 'Niet alle verplichte intakevragen zijn ingevuld.',
+      blockers: ['Onvolledige intake'],
+      currentStepIds: []
+    };
+  }
 
-  const hasIncompleteAnswers =
-    !answers.vehicleType || requiredBooleanFields.some((field) => answers[field] === null);
+  const scenarioConfig = scenarioConfigByVehicleType[answers.vehicleType];
+
+  const hasIncompleteAnswers = scenarioConfig.requiredBooleanFields.some((field) => answers[field] === null);
 
   if (hasIncompleteAnswers) {
     return {
@@ -24,7 +56,7 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
       title: 'Route X — Onvolledige intake',
       reason: 'Niet alle verplichte intakevragen zijn ingevuld.',
       blockers: ['Onvolledige intake'],
-      currentStepIds: ['outscope']
+      currentStepIds: []
     };
   }
 
@@ -44,22 +76,22 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
     currentStepIds.push('mismatch');
   }
 
-  if (answers.hasQuitusFiscal === false) {
-    blockers.push('Quitus fiscal ontbreekt');
-    currentStepIds.push('quitus');
-  }
-
-  if (answers.hasControleTechniqueValid === false) {
-    blockers.push('Contrôle technique ontbreekt of is verlopen');
-    currentStepIds.push('ct');
-  }
-
   if (answers.hasProofOfAddress === false) {
     blockers.push('Adresbewijs ontbreekt');
     currentStepIds.push('mismatch');
   }
 
-  if (answers.hasConformityDoc === false) {
+  if (scenarioConfig.checkQuitus && answers.hasQuitusFiscal === false) {
+    blockers.push('Quitus fiscal ontbreekt');
+    currentStepIds.push('quitus');
+  }
+
+  if (scenarioConfig.checkControleTechnique && answers.hasControleTechniqueValid === false) {
+    blockers.push('Contrôle technique ontbreekt of is verlopen');
+    currentStepIds.push('ct');
+  }
+
+  if (scenarioConfig.checkConformity && answers.hasConformityDoc === false) {
     blockers.push('Conformiteitsdocument ontbreekt');
     currentStepIds.push('conformity');
   }
