@@ -3,58 +3,116 @@ import { ActionStep } from '@/lib/types';
 export const actionSteps: Record<string, ActionStep> = {
   quitus: {
     id: 'quitus',
-    title: 'Vraag eerst je quitus fiscal aan',
-    doNow: 'Maak een afspraak of stuur je dossier naar het lokale belastingkantoor (SIE) voor de quitus fiscal.',
-    where: 'Service des Impôts des Entreprises (SIE) van jouw woonplaats in Frankrijk.',
-    neededDocs: ['ID', 'Koopfactuur of contract', 'Nederlands kentekenbewijs', 'Adresbewijs Frankrijk'],
-    commonMistake: 'Een onvolledige factuur indienen zonder duidelijke verkoper/kopergegevens.'
+    title: 'Vraag eerst uw quitus fiscal aan',
+    doNow:
+      'Neem contact op met het bevoegde belastingkantoor en vraag de quitus fiscal aan voordat u de immatriculatie voortzet.',
+    where:
+      'Bij het bevoegde Franse belastingkantoor voor uw situatie.',
+    neededDocs: [
+      'Identiteitsbewijs',
+      'Koopfactuur of koopovereenkomst',
+      'Buitenlands kentekenbewijs',
+      'Frans bewijs van adres'
+    ],
+    commonMistake:
+      'Een onvolledig dossier indienen, bijvoorbeeld zonder duidelijke gegevens van koper, verkoper of voertuig.'
   },
   ct: {
     id: 'ct',
-    title: 'Regel een geldig contrôle technique',
-    doNow: 'Plan een controle bij een erkend Frans controlecentrum.',
-    where: 'Erkend centre de contrôle technique in Frankrijk.',
-    neededDocs: ['Voertuigpapieren', 'Eventuele oude keuringsrapporten', 'Identiteit'],
-    commonMistake: 'Een te oud keuringsrapport gebruiken dat niet meer geldig is.'
+    title: 'Regel eerst een geldige contrôle technique',
+    doNow:
+      'Maak een afspraak bij een erkend Frans controlecentrum en laat het voertuig keuren, als die keuring voor uw situatie vereist is.',
+    where:
+      'Bij een erkend centre de contrôle technique in Frankrijk.',
+    neededDocs: [
+      'Voertuigpapieren',
+      'Buitenlands kentekenbewijs',
+      'Eventuele eerdere keuringsrapporten',
+      'Identiteitsbewijs'
+    ],
+    commonMistake:
+      'Een rapport gebruiken dat te oud is of niet past bij de Franse aanvraagvoorwaarden.'
   },
   conformity: {
     id: 'conformity',
-    title: 'Vraag het conformiteitsdocument aan',
-    doNow: 'Vraag een COC of attest bij fabrikant/importeur aan.',
-    where: 'Officiële klantenservice van fabrikant of erkende importeur.',
-    neededDocs: ['VIN/chassisnummer', 'Kopie kentekenbewijs', 'Identiteitsbewijs'],
-    commonMistake: 'Verkeerd VIN doorgeven waardoor het document niet bruikbaar is.'
+    title: 'Vraag eerst een conformiteitsdocument aan',
+    doNow:
+      'Vraag een COC of een ander passend conformiteitsdocument aan bij de constructeur, importeur of bevoegde instantie.',
+    where:
+      'Bij de constructeur, diens vertegenwoordiger of een andere bevoegde technische instantie.',
+    neededDocs: [
+      'VIN of chassisnummer',
+      'Kopie van het kentekenbewijs',
+      'Identiteitsbewijs',
+      'Eventuele aanvullende voertuiggegevens'
+    ],
+    commonMistake:
+      'Een verkeerd VIN of onvolledige voertuiggegevens doorgeven, waardoor het document niet bruikbaar is.'
   },
   ants: {
     id: 'ants',
-    title: 'Dien je dossier in via ANTS / France Titres',
-    doNow: 'Upload alle documenten en volg de online stappen voor immatriculation.',
-    where: 'ants.gouv.fr / France Titres.',
-    neededDocs: ['Quitus fiscal', 'Conformiteitsdocument', 'Geldige CT (indien vereist)', 'Adresbewijs', 'Identiteit'],
-    commonMistake: 'Bestanden uploaden met onleesbare scans of afwijkende namen.'
+    title: 'Dien uw dossier in via France Titres / ANTS',
+    doNow:
+      'Controleer uw dossier nog één keer, upload de stukken en doorloop vervolgens de online aanvraag stap voor stap.',
+    where:
+      'Online via France Titres / ANTS.',
+    neededDocs: [
+      'Quitus fiscal indien vereist',
+      'Conformiteitsdocument',
+      'Geldige contrôle technique indien vereist',
+      'Frans bewijs van adres',
+      'Identiteitsbewijs',
+      'Buitenlands kentekenbewijs'
+    ],
+    commonMistake:
+      'Onduidelijke scans uploaden of documenten indienen met afwijkende naam- of adresgegevens.'
   },
   pro: {
     id: 'pro',
-    title: 'Schakel een erkende professional in',
-    doNow: 'Laat een garage of geautoriseerde dienstverlener je dossier indienen.',
-    where: 'Garage/mandataire met habilitation SIV.',
-    neededDocs: ['Volmacht indien gevraagd', 'Volledig documentendossier'],
-    commonMistake: 'Aannemen dat de professional ontbrekende documenten voor je kan vervangen.'
+    title: 'Laat de indiening verzorgen door een erkende professional',
+    doNow:
+      'Bereid uw dossier volledig voor en laat de formele indiening daarna uitvoeren door een professionnel habilité of garagebedrijf.',
+    where:
+      'Bij een garagebedrijf of andere professional met habilitation voor immatriculatie.',
+    neededDocs: [
+      'Volledig documentendossier',
+      'Eventuele volmacht of opdrachtbevestiging',
+      'Identiteitsbewijs',
+      'Frans bewijs van adres'
+    ],
+    commonMistake:
+      'Aannemen dat de professional ontbrekende stukken wel zal oplossen, terwijl het dossier inhoudelijk nog onvolledig is.'
   },
   mismatch: {
     id: 'mismatch',
-    title: 'Herstel naam/adres inconsistentie',
-    doNow: 'Controleer dat naam en adres exact gelijk zijn op alle documenten.',
-    where: 'Bij uitgevende instanties of via nieuw adresbewijs.',
-    neededDocs: ['ID', 'Nieuw adresbewijs', 'Correcte factuur/contract'],
-    commonMistake: 'Afwijkingen zoals tweede voornaam of oud adres negeren.'
+    title: 'Herstel eerst de inconsistentie in naam of adres',
+    doNow:
+      'Controleer alle documenten en zorg dat naam, adres en voertuiggegevens overal exact overeenkomen.',
+    where:
+      'Bij de instantie of partij die het foutieve document heeft afgegeven.',
+    neededDocs: [
+      'Identiteitsbewijs',
+      'Correct bewijs van adres',
+      'Juiste factuur of overeenkomst',
+      'Eventuele gecorrigeerde voertuigdocumenten'
+    ],
+    commonMistake:
+      'Kleine afwijkingen negeren, zoals een oud adres, ontbrekende tweede naam of een andere schrijfwijze.'
   },
   outscope: {
     id: 'outscope',
-    title: 'Buiten scope: vraag handmatige hulp',
-    doNow: 'Neem contact op met een specialist voor jouw specifieke situatie.',
-    where: 'Gespecialiseerde importdienst of juridisch adviseur.',
-    neededDocs: ['Volledige voertuigdocumentatie'],
-    commonMistake: 'Doorgaan in standaardproces terwijl je case buiten de regels valt.'
+    title: 'Deze situatie valt buiten deze eerste toolversie',
+    doNow:
+      'Laat uw dossier beoordelen door een specialist voordat u verdergaat met de standaardprocedure.',
+    where:
+      'Bij een gespecialiseerde importdienst, technisch adviseur of andere bevoegde deskundige.',
+    neededDocs: [
+      'Volledige voertuigdocumentatie',
+      'Buitenlands kentekenbewijs',
+      'Technische voertuiggegevens',
+      'Eventuele aankoopdocumenten'
+    ],
+    commonMistake:
+      'Toch doorgaan met de standaardstappen terwijl uw dossier een afwijkende of complexere behandeling nodig heeft.'
   }
 };
