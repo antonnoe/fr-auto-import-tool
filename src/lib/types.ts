@@ -1,4 +1,7 @@
-export type VehicleType = 'personenauto' | 'camper_tot_35t' | 'aanhanger_caravan';
+export type VehicleType =
+  | 'personenauto'
+  | 'camper_tot_35t'
+  | 'aanhanger_caravan';
 
 export type IntakeAnswers = {
   vehicleType: VehicleType | null;
@@ -14,16 +17,25 @@ export type IntakeAnswers = {
 
 export type RouteCode = 'A' | 'B' | 'C' | 'D' | 'E' | 'X';
 
+export type ActionStepId =
+  | 'quitus'
+  | 'ct'
+  | 'conformity'
+  | 'ants'
+  | 'pro'
+  | 'mismatch'
+  | 'outscope';
+
 export type RouteResult = {
   route: RouteCode;
   title: string;
   reason: string;
   blockers: string[];
-  currentStepIds: string[];
+  currentStepIds: ActionStepId[];
 };
 
 export type ActionStep = {
-  id: string;
+  id: ActionStepId;
   title: string;
   doNow: string;
   where: string;
