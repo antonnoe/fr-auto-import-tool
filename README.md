@@ -1,149 +1,76 @@
-# fr-auto-import-tool
+# Je Nederlandse auto importeren en immatriculeren in Frankrijk (MVP)
 
-Guided web tool for Dutch-speaking users who want to import and register a Dutch/EU vehicle in France.
+Een eenvoudige Next.js MVP die Nederlandstalige gebruikers stap-voor-stap begeleidt bij import/inschrijving van specifieke voertuigen in Frankrijk.
 
-## Purpose
+## Wat is geïmplementeerd
 
-This project is not an article site.
+- Guided intake flow in het Nederlands.
+- Centrale route-engine met één bewerkbaar regelsbestand.
+- Route-uitkomsten: A, B, C, D, E en X.
+- Blokkeringsdiagnostiek voor:
+  - ontbrekende quitus fiscal
+  - ontbrekende/verlopen contrôle technique
+  - ontbrekend adresbewijs
+  - ontbrekend conformiteitsdocument
+  - mismatch naam/adres/documenten
+- Actieplan per stap met:
+  - wat nu te doen
+  - waar dit te doen
+  - benodigde documenten
+  - veelgemaakte fout
+- Franse helperteksten:
+  - korte mail aan garage
+  - korte mail voor COC
+  - kort telefoonscript voor CT
+  - korte uitleg voor garage/balie
+- Voorbeeldscenario’s om snel routes te demonstreren.
 
-It is a guided dossier tool that helps users complete the French vehicle registration process step by step, either:
-- by themselves via ANTS / France Titres, or
-- through a local French garage or other authorised professional.
+## Scope in deze MVP
 
-The tool must always show the user the **next required step**, based on their answers.
+Ondersteund:
+- Personenauto’s uit Nederland / EU
+- Campers t/m 3.5 ton
+- Aanhangers/caravans met PTAC > 500 kg
 
-## Product language
+Buiten scope:
+- Niet-EU/USA import
+- Campers > 3.5 ton
+- Voertuigen in collection-categorie
+- Authenticatie, database, OCR/AI documentverwerking
+- Directe ANTS-koppeling, betalingen, admin-dashboard
 
-- User interface: Dutch
-- Helper texts: Dutch + short functional French output where needed
-- Internal code/comments: English is acceptable
+## Techniek
 
-## Scope v1
-
-Included:
-- Passenger cars from Netherlands / EU
-- Campers up to and including 3.5 tons
-- Trailers / caravans with PTAC > 500 kg
-
-Excluded:
-- Non-EU / USA imports
-- Campers above 3.5 tons
-- Collection vehicles
-- OCR / AI document reading
-- Direct ANTS integration
-- Accounts / login
-- Payments
-- Full legal automation
-
-## Core user routes
-
-The tool must support these outcome routes:
-
-- Route A — Self-service via ANTS / France Titres
-- Route B — Via a French garage / authorised professional
-- Route C — First obtain quitus fiscal
-- Route D — First obtain contrôle technique
-- Route E — First obtain conformity document
-- Route X — Outside scope / manual help needed
-
-## Main functional blocks
-
-### 1. Intake
-Collect the minimum information needed to place the user in the correct route.
-
-Examples:
-- vehicle type
-- EU or non-EU
-- new or used
-- older than 4 years or not
-- COC available or not
-- self-service or garage route
-
-### 2. Decision engine
-Translate user answers into one concrete route and next step.
-
-### 3. Document checklist
-Show only the documents relevant for the user’s exact situation.
-
-Examples:
-- foreign registration document
-- proof of identity
-- proof of address
-- Cerfa 13750
-- quitus fiscal
-- contrôle technique
-- COC / conformity document
-- purchase invoice / transfer proof
-
-### 4. Step-by-step action plan
-For each step, the UI must answer:
-1. What to do now
-2. Where to do it
-3. What documents are needed
-4. Common mistake to avoid
-
-### 5. French helper texts
-Generate short, practical French texts such as:
-- email to a garage
-- email to request a COC
-- short phone script for contrôle technique
-- short explanation for a French garage or desk employee
-
-### 6. Blocking diagnostics
-Help the user understand why the dossier is incomplete or likely to be rejected.
-
-Examples:
-- missing quitus fiscal
-- outdated contrôle technique
-- missing proof of address
-- missing conformity document
-- mismatch in name or address
-
-## UX principles
-
-- Clear
-- Minimal
-- Non-technical
-- Mobile-friendly
-- No long legal essays
-- No fake official output
-- No invented legal certainty
-- Always one clear next action
-
-## Source policy
-
-This project must stay strict on factual reliability.
-
-Preferred official sources for future content/rules:
-- Service-Public.fr
-- ANTS / France Titres
-- impots.gouv.fr
-- official French administrative sources
-
-The UI must not pretend to replace official validation.
-
-## Suggested tech direction
-
-Preferred stack:
-- Next.js
+- Next.js (App Router)
 - TypeScript
-- Simple local rules engine
-- No database for v1 unless clearly necessary
+- Gescheiden structuur:
+  - `src/app`
+  - `src/components`
+  - `src/lib`
+  - `src/rules`
+  - `src/content`
 
-Important:
-- keep logic modular
-- separate UI, content, and rules
-- avoid overengineering
+Belangrijk: de beslislogica staat centraal in `src/rules/routeEngine.ts`.
 
-## Recommended initial structure
+## Lokaal draaien
 
-```text
-src/
-  app/
-  components/
-  lib/
-  rules/
-  content/
+```bash
+npm install
+npm run dev
+```
 
-public/
-docs/
+Open daarna: `http://localhost:3000`
+
+Checks:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Beperkingen / volgende stappen
+
+- Geen juridische garantie; gebruiker moet altijd officiële validatie doen.
+- Regels zijn vereenvoudigd voor MVP-doeleinden.
+- Nog geen persistente opslag of dossier-export (PDF/print).
+- Nog geen meertalige UI-instellingen (nu: Nederlands met Franse templates).

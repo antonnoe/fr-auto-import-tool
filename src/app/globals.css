@@ -1,0 +1,100 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f8fb;
+  color: #101828;
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+.muted {
+  color: #475467;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+button {
+  background: #175cd3;
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.secondary {
+  background: white;
+  color: #175cd3;
+  border: 1px solid #175cd3;
+}
+
+input[type='radio'] {
+  margin-right: 0.5rem;
+}
+
+label.option {
+  display: block;
+  border: 1px solid #d0d5dd;
+  padding: 0.65rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #eef4ff;
+  color: #1849a9;
+  border: 1px solid #c7d7fe;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.alert {
+  border-left: 4px solid #d92d20;
+  background: #fef3f2;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+small code {
+  background: #f2f4f7;
+  padding: 0.1rem 0.3rem;
+  border-radius: 5px;
+}
