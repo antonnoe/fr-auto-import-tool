@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:unit": "npx vitest run",
+    "test:e2e": "npx @playwright/test test"
   },
   "dependencies": {
     "next": "14.2.5",
@@ -22,8 +22,6 @@
     "@types/react-dom": "18.3.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
-    "typescript": "5.5.3",
-    "@playwright/test": "^1.54.2",
-    "vitest": "^2.0.4"
+    "typescript": "5.5.3"
   }
 }

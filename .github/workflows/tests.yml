@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: npx @playwright/test install --with-deps chromium
 
       - name: Run unit and smoke tests
         run: npm run test
