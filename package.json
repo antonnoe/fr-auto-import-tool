@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "npx vitest run",
+    "test:e2e": "npx @playwright/test test"
   },
   "dependencies": {
     "next": "14.2.5",
