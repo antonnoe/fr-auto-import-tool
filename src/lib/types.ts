@@ -15,6 +15,19 @@ export type IntakeAnswers = {
   wantsProfessionalHelp: boolean | null;
 };
 
+export type RouteAdviceKey =
+  | 'zelf_indienen'
+  | 'zelf_voorbereiden_professional'
+  | 'eerst_specialist';
+
+export type VehicleDataFormValues = {
+  firstRegistrationDate: string;
+  powerKw: string;
+  co2GramsPerKm: string;
+  mileageKm: string;
+  region: string;
+};
+
 export type RouteCode = 'A' | 'B' | 'C' | 'D' | 'E' | 'X';
 
 export type ActionStepId =

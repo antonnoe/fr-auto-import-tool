@@ -1,4 +1,4 @@
-import { IntakeAnswers } from '@/lib/types';
+import { IntakeAnswers, VehicleDataFormValues } from '@/lib/types';
 
 export const initialAnswers: IntakeAnswers = {
   vehicleType: null,
@@ -10,4 +10,12 @@ export const initialAnswers: IntakeAnswers = {
   hasConformityDoc: null,
   nameAddressMatch: null,
   wantsProfessionalHelp: null
+};
+
+export const initialVehicleData: VehicleDataFormValues = {
+  firstRegistrationDate: '',
+  powerKw: '',
+  co2GramsPerKm: '',
+  mileageKm: '',
+  region: ''
 };

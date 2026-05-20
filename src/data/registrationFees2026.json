@@ -1,0 +1,10 @@
+{
+  "sourceName": "Service-Public.fr — Quel est le coût de votre carte grise en 2026 ?",
+  "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A18021",
+  "lastChecked": "2026-05-20",
+  "year": 2026,
+  "fees": {
+    "managementFee": 11,
+    "deliveryFee": 2.76
+  }
+}
