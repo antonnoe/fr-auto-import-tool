@@ -41,6 +41,10 @@ function formatDate(value: string) {
   return Number.isNaN(parsed.getTime()) ? value : dateFormatter.format(parsed);
 }
 
+function getTodayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 function getRecommendedAdvice(route: string): RouteAdviceKey {
   if (route === 'A') {
     return 'zelf_indienen';
@@ -64,7 +68,7 @@ export default function HomePage() {
   const costEstimate = useMemo(
     () =>
       calculateVehicleCosts({
-        calculationDate: new Date().toISOString().slice(0, 10),
+        calculationDate: getTodayIsoDate(),
         region: vehicleData.region,
         firstRegistrationDate: vehicleData.firstRegistrationDate,
         powerKw: parseOptionalNumber(vehicleData.powerKw),

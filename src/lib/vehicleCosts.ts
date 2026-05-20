@@ -138,6 +138,8 @@ export function calculateFiscalHorsepower({
     return null;
   }
 
+  // Franse formule voor puissance fiscale / CV: (CO₂ / 45) + (kW / 40)^1,6,
+  // naar beneden afgerond voor de schatting van de carte grise.
   const rawValue = co2GramsPerKm / 45 + Math.pow(powerKw / 40, 1.6);
   return Math.floor(rawValue);
 }
