@@ -77,6 +77,20 @@ function createOutOfScopeResult(): RouteResult {
   };
 }
 
+function createDossierConsistencyResult(
+  blockers: string[],
+  currentStepIds: ActionStepId[]
+): RouteResult {
+  return {
+    route: 'X',
+    title: 'Route X — Eerst dossierconsistentie herstellen',
+    reason:
+      'Eén of meer basisgegevens in uw dossier ontbreken of sluiten nog niet goed op elkaar aan.',
+    blockers,
+    currentStepIds
+  };
+}
+
 export function evaluateRoute(answers: IntakeAnswers): RouteResult {
   const blockers: string[] = [];
   const currentStepIds: ActionStepId[] = [];
@@ -101,12 +115,12 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
 
   if (answers.nameAddressMatch === false) {
     blockers.push('Naam-, adres- of documentgegevens komen niet overeen');
-    currentStepIds.push('mismatch');
+    currentStepIds.push('nameAddressMismatch');
   }
 
   if (answers.hasProofOfAddress === false) {
     blockers.push('Frans bewijs van adres ontbreekt');
-    currentStepIds.push('mismatch');
+    currentStepIds.push('missingProofOfAddress');
   }
 
   if (scenarioConfig.checkQuitus && answers.hasQuitusFiscal === false) {
@@ -153,14 +167,8 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
         blockers,
         currentStepIds
       },
-      mismatch: {
-        route: 'X',
-        title: 'Route X — Eerst dossierconsistentie herstellen',
-        reason:
-          'Naam, adres of andere dossiergegevens zijn nog niet volledig consistent.',
-        blockers,
-        currentStepIds
-      },
+      nameAddressMismatch: createDossierConsistencyResult(blockers, currentStepIds),
+      missingProofOfAddress: createDossierConsistencyResult(blockers, currentStepIds),
       ants: {
         route: 'A',
         title: 'Route A — Zelf online indienen via France Titres / ANTS',
@@ -187,7 +195,7 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
       }
     };
 
-    return routeMap[firstStep] ?? routeMap.mismatch;
+    return routeMap[firstStep] ?? createDossierConsistencyResult(blockers, currentStepIds);
   }
 
   if (answers.wantsProfessionalHelp) {
