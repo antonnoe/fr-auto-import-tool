@@ -1,0 +1,35 @@
+{
+  "sourceName": "Service-Public.fr — Quel est le coût de votre carte grise en 2026 ?",
+  "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A18021",
+  "lastChecked": "2026-05-20",
+  "year": 2026,
+  "rates": [
+    { "region": "Auvergne-Rhône-Alpes", "periods": [{ "from": "2026-01-01", "rate": 43 }] },
+    { "region": "Bourgogne-Franche-Comté", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    { "region": "Bretagne", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    { "region": "Centre-Val de Loire", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    { "region": "Corse", "periods": [{ "from": "2026-01-01", "rate": 53 }] },
+    { "region": "Grand Est", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    {
+      "region": "Hauts-de-France",
+      "periods": [
+        { "from": "2026-01-01", "rate": 42 },
+        { "from": "2026-04-01", "rate": 43 }
+      ]
+    },
+    { "region": "Île-de-France", "periods": [{ "from": "2026-03-01", "rate": 68.95 }] },
+    { "region": "Normandie", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    { "region": "Nouvelle-Aquitaine", "periods": [{ "from": "2026-03-01", "rate": 58 }] },
+    { "region": "Occitanie", "periods": [{ "from": "2026-01-01", "rate": 59.5 }] },
+    { "region": "Pays de la Loire", "periods": [{ "from": "2026-01-01", "rate": 51 }] },
+    {
+      "region": "Provence-Alpes-Côte d’Azur",
+      "periods": [{ "from": "2026-01-01", "rate": 60 }]
+    },
+    { "region": "Guadeloupe", "periods": [{ "from": "2026-01-01", "rate": 41 }] },
+    { "region": "Guyane", "periods": [{ "from": "2026-01-01", "rate": 42.5 }] },
+    { "region": "Martinique", "periods": [{ "from": "2026-01-01", "rate": 53 }] },
+    { "region": "La Réunion", "periods": [{ "from": "2026-01-01", "rate": 60 }] },
+    { "region": "Mayotte", "periods": [{ "from": "2026-01-01", "rate": 30 }] }
+  ]
+}

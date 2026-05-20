@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "outDir": ".test-dist",
+    "rootDir": ".",
+    "types": ["node"],
+    "jsx": "react-jsx",
+    "incremental": false
+  },
+  "include": ["src/lib/vehicleCosts.ts", "src/data/**/*.json", "tests/**/*.ts"]
+}

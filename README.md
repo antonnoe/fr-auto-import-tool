@@ -6,6 +6,7 @@ Een eenvoudige Next.js MVP die Nederlandstalige gebruikers stap-voor-stap begele
 
 - Guided intake flow in het Nederlands.
 - Centrale route-engine met één bewerkbaar regelsbestand.
+- Voorzichtige lokale kostenschatting met 2026 brondata en disclaimerblok.
 - Route-uitkomsten: A, B, C, D, E en X.
 - Blokkeringsdiagnostiek voor:
   - ontbrekende quitus fiscal
@@ -24,6 +25,7 @@ Een eenvoudige Next.js MVP die Nederlandstalige gebruikers stap-voor-stap begele
   - kort telefoonscript voor CT
   - korte uitleg voor garage/balie
 - Voorbeeldscenario’s om snel routes te demonstreren.
+- Node test runner via `npm run test`.
 
 ## Scope in deze MVP
 
@@ -71,6 +73,7 @@ Open daarna: `http://localhost:3000`
 Checks:
 
 ```bash
+npm run test
 npm run lint
 npm run build
 ```

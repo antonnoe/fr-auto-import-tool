@@ -115,7 +115,10 @@ function annotateInline(text: string): ReactNode[] {
   const parts: ReactNode[] = [];
   let lastIndex = 0;
 
-  text.replace(combinedPattern, (match, _capture, offset: number) => {
+  for (const found of text.matchAll(combinedPattern)) {
+    const match = found[0];
+    const offset = found.index ?? 0;
+
     if (offset > lastIndex) {
       parts.push(text.slice(lastIndex, offset));
     }
@@ -133,8 +136,7 @@ function annotateInline(text: string): ReactNode[] {
     );
 
     lastIndex = offset + match.length;
-    return match;
-  });
+  }
 
   if (lastIndex < text.length) {
     parts.push(text.slice(lastIndex));

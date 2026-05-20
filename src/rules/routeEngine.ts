@@ -1,4 +1,9 @@
-import { IntakeAnswers, RouteResult, VehicleType } from '@/lib/types';
+import {
+  ActionStepId,
+  IntakeAnswers,
+  RouteResult,
+  VehicleType
+} from '@/lib/types';
 
 type IntakeField = keyof Omit<IntakeAnswers, 'vehicleType'>;
 
@@ -74,7 +79,7 @@ function createOutOfScopeResult(): RouteResult {
 
 export function evaluateRoute(answers: IntakeAnswers): RouteResult {
   const blockers: string[] = [];
-  const currentStepIds: string[] = [];
+  const currentStepIds: ActionStepId[] = [];
 
   if (!answers.vehicleType) {
     return createIncompleteResult();
@@ -125,7 +130,7 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
   if (blockers.length > 0) {
     const firstStep = currentStepIds[0];
 
-    const routeMap: Record<string, RouteResult> = {
+    const routeMap: Record<ActionStepId, RouteResult> = {
       quitus: {
         route: 'C',
         title: 'Route C — Eerst quitus fiscal regelen',
@@ -153,6 +158,30 @@ export function evaluateRoute(answers: IntakeAnswers): RouteResult {
         title: 'Route X — Eerst dossierconsistentie herstellen',
         reason:
           'Naam, adres of andere dossiergegevens zijn nog niet volledig consistent.',
+        blockers,
+        currentStepIds
+      },
+      ants: {
+        route: 'A',
+        title: 'Route A — Zelf online indienen via France Titres / ANTS',
+        reason:
+          'Op basis van uw antwoorden lijkt uw dossier voldoende compleet om zelf online in te dienen.',
+        blockers,
+        currentStepIds
+      },
+      pro: {
+        route: 'B',
+        title: 'Route B — Voorbereiding zelf, indiening via professional',
+        reason:
+          'Uw dossier lijkt voldoende compleet om de indiening te laten verzorgen door een erkende professional.',
+        blockers,
+        currentStepIds
+      },
+      outscope: {
+        route: 'X',
+        title: 'Route X — Buiten deze toolversie',
+        reason:
+          'Deze eerste toolversie ondersteunt alleen voertuigen uit Nederland of een ander EU-land binnen de gedefinieerde categorieën.',
         blockers,
         currentStepIds
       }
