@@ -83,21 +83,36 @@ export const actionSteps: Record<string, ActionStep> = {
     commonMistake:
       'Aannemen dat de professional ontbrekende stukken wel zal oplossen, terwijl het dossier inhoudelijk nog onvolledig is.'
   },
-  mismatch: {
-    id: 'mismatch',
-    title: 'Herstel eerst de inconsistentie in naam of adres',
+  nameAddressMismatch: {
+    id: 'nameAddressMismatch',
+    title: 'Corrigeer afwijkende naam- of documentgegevens',
     doNow:
-      'Controleer alle documenten en zorg dat naam, adres en voertuiggegevens overal exact overeenkomen.',
+      'Controleer of naam, voornamen, adres, kentekenbewijs, factuur of overeenkomst en identiteitsbewijs exact bij elkaar passen. Laat het foutieve document eerst corrigeren voordat u verdergaat.',
     where:
-      'Bij de instantie of partij die het foutieve document heeft afgegeven.',
+      'Bij de instantie, verkoper, garage of partij die het foutieve document heeft afgegeven.',
     neededDocs: [
       'Identiteitsbewijs',
-      'Correct bewijs van adres',
-      'Juiste factuur of overeenkomst',
-      'Eventuele gecorrigeerde voertuigdocumenten'
+      'Buitenlands kentekenbewijs',
+      'Factuur of koopovereenkomst met juiste naamgegevens',
+      'Eventueel gecorrigeerd voertuigdocument'
     ],
     commonMistake:
-      'Kleine afwijkingen negeren, zoals een oud adres, ontbrekende tweede naam of een andere schrijfwijze.'
+      'Een klein verschil in voornaam, tweede naam, oud adres of schrijfwijze negeren.'
+  },
+  missingProofOfAddress: {
+    id: 'missingProofOfAddress',
+    title: 'Voeg eerst een geldig Frans adresbewijs toe',
+    doNow:
+      'Zorg voor een recent Frans justificatif de domicile op naam van de aanvrager. Zonder bruikbaar Frans adresbewijs kan de aanvraag doorgaans niet correct worden ingediend.',
+    where:
+      'Bij uw eigen administratie: bijvoorbeeld via energieleverancier, internetprovider, verzekeraar of een ander aanvaard Frans adresbewijs.',
+    neededDocs: [
+      'Recent Frans justificatif de domicile',
+      'Identiteitsbewijs van de aanvrager',
+      'Indien van toepassing: attest d’hébergement met bewijsstukken van de host'
+    ],
+    commonMistake:
+      'Een Nederlands adresbewijs, een te oud document of een Frans bewijs op naam van iemand anders gebruiken zonder de vereiste aanvullende stukken.'
   },
   outscope: {
     id: 'outscope',
