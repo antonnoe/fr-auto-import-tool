@@ -36,7 +36,8 @@ export type ActionStepId =
   | 'conformity'
   | 'ants'
   | 'pro'
-  | 'mismatch'
+  | 'nameAddressMismatch'
+  | 'missingProofOfAddress'
   | 'outscope';
 
 export type RouteResult = {
